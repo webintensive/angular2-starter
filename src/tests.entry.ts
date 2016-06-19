@@ -1,5 +1,6 @@
 'use strict';
 
+import 'babel-polyfill';
 import 'core-js/es6';
 import 'core-js/es7/reflect';
 import 'reflect-metadata';
@@ -25,10 +26,14 @@ import {
 setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
   TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
 
-const looseRequire: any = require;
+const testContext = (<{ context?: Function }>require)
+  .context('./', true, /^(.(?!tests\.entry))*\.ts$/);
 
-const testContext = looseRequire.context(
-  './',
-  true,
-  /\.test\.ts/);
-testContext.keys().forEach(testContext);
+testContext('./index.ts');
+
+testContext.keys().forEach(
+  key => {
+    if (/\.test\.ts$/.test(key)) {
+      testContext(key);
+    }
+  });
