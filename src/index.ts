@@ -6,9 +6,9 @@ require('zone.js/dist/zone');
 
 import { enableProdMode, provide } from '@angular/core';
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { APP_BASE_HREF } from '@angular/common/index';
-import { RioSampleAppComponent } from './containers/sample-app';
+import { RioSampleAppComponent, APP_ROUTER_PROVIDERS }
+  from './containers/sample-app';
 
 declare let __PRODUCTION__: any;
 
@@ -19,6 +19,6 @@ if (__PRODUCTION__) {
 }
 
 bootstrap(RioSampleAppComponent, [
-  ROUTER_PROVIDERS,
+  APP_ROUTER_PROVIDERS,
   provide(APP_BASE_HREF, { useValue: '/' })
 ]);
