@@ -20,9 +20,7 @@ if (__PRODUCTION__) {
   require('zone.js/dist/long-stack-trace-zone');
 }
 
-if (!__TEST__) {
-  bootstrap(RioSampleAppComponent, [
-    APP_ROUTER_PROVIDERS,
-    provide(APP_BASE_HREF, { useValue: '/' })
-  ]);
-}
+bootstrap(RioSampleAppComponent, [
+  APP_ROUTER_PROVIDERS,
+  provide(APP_BASE_HREF, { useValue: '/' })
+]);
